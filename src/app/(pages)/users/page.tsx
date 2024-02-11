@@ -1,11 +1,11 @@
 import Post from './(presentation)/(components)/post';
 
-const NewsPage = () => {
+const UsersPage = () => {
   return (
-    <div className="w-full h-full p-12">
+    <div className="w-full h-full">
       <Post />
     </div>
   );
 };
 
-export default NewsPage;
+export default UsersPage;

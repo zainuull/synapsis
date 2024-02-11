@@ -3,7 +3,7 @@ import environment from '../../../environments/config';
 
 
 const headerss = {
-  Authorization: `Bearer`,
+  Authorization: `Bearer ${'eebe01cac9f0bd64245c5fcf254115202dc0936d9fefd562048fdfc9732b63dd'}`,
   'Content-Type': 'application/json',
   Accept: 'application/json',
 };
