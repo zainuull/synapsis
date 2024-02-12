@@ -6,6 +6,9 @@ const store = atom({
   email: '',
   gender: '',
   status: '',
+  isUpdate: false,
+  isCreate: false,
+  isDeleted: false,
 });
 
 const useForm = () => useAtom(store);

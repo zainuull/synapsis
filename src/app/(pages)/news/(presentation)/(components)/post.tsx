@@ -46,13 +46,13 @@ const Post = () => {
         return (
           <div
             key={idx}
-            className="w-full grid grid-cols-5 gap-x-4 border-y border-gray-700 p-10 my-5">
+            className="w-full grid grid-cols-1 lg:grid-cols-5 lg:gap-x-4 border-y border-gray-700 lg:p-10 my-5">
             <Image
               src={'/assets/foto1.jpg'}
               alt=""
               width={300}
               height={300}
-              className="col-span-1"
+              className="col-span-1 w-full lg:w-[300px]"
             />
             <span className="px-2 flex flex-col gap-y-4 col-span-3">
               <h1 className="flex flex-col font-semibold text-xl">

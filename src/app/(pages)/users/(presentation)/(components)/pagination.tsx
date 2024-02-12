@@ -1,8 +1,4 @@
-import { useState } from 'react';
 import { BsChevronDoubleLeft, BsChevronDoubleRight } from 'react-icons/bs';
-
-import VM from '../vm/vm';
-import Link from 'next/link';
 
 const Pagination = ({
   pageNow,

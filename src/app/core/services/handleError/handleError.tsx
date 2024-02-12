@@ -5,6 +5,7 @@ export const HandleError = (err: any) => {
   const message = (errRes && errRes?.data.message) || err.statusText || err.message || '';
   const status = err.status || errRes?.data.statusCode || errRes?.status || err['statusCode'] || 0;
 
+  
   switch (status) {
     case 400:
       if (typeof message == 'string') {
@@ -147,6 +148,34 @@ export const HandleError = (err: any) => {
       }
       break;
 
+    case 422:
+      if (typeof message == 'string') {
+   
+
+        switch (message) {
+          case 'Request failed with status code 422':
+            Swal.fire({
+              icon: 'error',
+              title: 'Error !',
+              text: 'Email sudah terdaftar',
+            });
+            break;
+        }
+      } else {
+        message.forEach((el: string) => {
+          switch (el) {
+            case 'description should not be empty':
+              Swal.fire({
+                icon: 'error',
+                title: 'Error !',
+                text: 'Deskripsi tidak boleh kosong',
+              });
+              break;
+          }
+        });
+      }
+      break;
+
     case 401:
       Swal.fire({
         icon: 'error',
@@ -154,6 +183,7 @@ export const HandleError = (err: any) => {
         text: 'Token Anda Kadaluarsa',
       });
       break;
+
     case 403:
       Swal.fire({
         icon: 'error',

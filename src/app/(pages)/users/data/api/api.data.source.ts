@@ -16,17 +16,17 @@ export default class ApiDataSourceImpl implements Repository {
   }
 
   async getDataById(id: string) {
-    const res = await Http.get<NewsDataModel>(`/public/v2/posts/${id}`);
+    const res = await Http.get<NewsDataModel>(`/public/v2/users/${id}`);
     return res.data;
   }
 
   async createData(data: UserDataModel) {
-    const res = await Http.post<NewsModel>('/public/v2/posts', data);
+    const res = await Http.post<NewsModel>('/public/v2/users', data);
     return res.data;
   }
 
   async deleteData(id: string) {
-    const res = await Http.delete<NewsModel>(`/public/v2/posts/${id}`);
+    const res = await Http.delete<NewsModel>(`/public/v2/users/${id}`);
     return res.data;
   }
 

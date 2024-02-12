@@ -1,8 +1,4 @@
-import {
-  NewsDataModel,
-  UserDataModel,
-  NewsModel,
-} from '../model/model';
+import { NewsDataModel, UserDataModel, NewsModel } from '../model/model';
 
 export interface Repository {
   getUsers(): Promise<UserDataModel[]>;

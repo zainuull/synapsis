@@ -4,13 +4,27 @@ import useForm from '../store/store.form';
 import useDataStore from '../store/store.datas';
 import VM from '../vm/vm';
 import { HandleError } from '@/app/core/services/handleError/handleError';
-import { NotifyService } from '@/app/core/services/notify/notifyService';
+import { NotifyService, ToastifyService } from '@/app/core/services/notify/notifyService';
+import { useEffect } from 'react';
 
 const Update = ({ isMenu, setIsMenu }: { isMenu: boolean; setIsMenu: Function }) => {
   const { updateData } = VM();
   const [form, setForm] = useForm();
   const [datas] = useDataStore();
+  const toastifyService = new ToastifyService();
   const notifyService = new NotifyService();
+
+  useEffect(() => {
+    if (datas) {
+      setForm({
+        ...form,
+        name: datas?.name || '',
+        email: datas?.email || '',
+        gender: datas?.gender || '',
+        status: datas?.status || '',
+      });
+    }
+  }, [datas]);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     setForm({
@@ -31,8 +45,9 @@ const Update = ({ isMenu, setIsMenu }: { isMenu: boolean; setIsMenu: Function })
       if (res && datas.id) {
         updateData(datas?.id, payload)
           .then(() => {
+            toastifyService.successUpdate();
             setIsMenu(!isMenu);
-            notifyService.successUpdate();
+            setForm({ ...form, isUpdate: true });
           })
           .catch((err) => {
             HandleError(err);
@@ -44,7 +59,7 @@ const Update = ({ isMenu, setIsMenu }: { isMenu: boolean; setIsMenu: Function })
   return (
     <div className="absolute w-full h-full top-0 bg-black/30">
       <div className="w-full h-full relative flex justify-center">
-        <form className="w-1/2 min-h-1/2 bg-white absolute mt-20 flex flex-col gap-y-4 p-14 rounded-lg">
+        <form className="w-4/5 lg:w-1/2 min-h-1/2 bg-white absolute mt-20 flex flex-col gap-y-2 lg:gap-y-4 p-6 lg:p-14 rounded-lg text-sm lg:text-base">
           <span className="flex flex-col gap-y-2">
             <p className="font-medium">Nama Lengkap</p>
             <input
